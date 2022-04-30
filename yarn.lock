@@ -1357,6 +1357,14 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
+"@types/jest@^27.4.1":
+  "integrity" "sha512-23iPJADSmicDVrWk+HT58LMJtzLAnB2AgIzplQuq/bSrGaxCrlvRFjGbXmamnnk/mAmCdLStiGqggu28ocUyiw=="
+  "resolved" "https://registry.npmjs.org/@types/jest/-/jest-27.4.1.tgz"
+  "version" "27.4.1"
+  dependencies:
+    "jest-matcher-utils" "^27.0.0"
+    "pretty-format" "^27.0.0"
+
 "@types/json-schema@^7.0.3":
   "integrity" "sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ=="
   "resolved" "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.11.tgz"
@@ -2523,6 +2531,11 @@
   "integrity" "sha512-Mv/TDa3nZ9sbc5soK+OoA74BsS3mL37yixCvUAQkiuA4Wz6YtwP/K47n2rv2ovzHZvoiQeA5FTQOschKkEwB0Q=="
   "resolved" "https://registry.npmjs.org/diff-sequences/-/diff-sequences-26.6.2.tgz"
   "version" "26.6.2"
+
+"diff-sequences@^27.5.1":
+  "integrity" "sha512-k1gCAXAsNgLwEL+Y8Wvl+M6oEFj5bgazfZULpS5CneoPPXRaCCW7dm+q21Ky2VEE5X+VeRDBVg1Pcvvsr4TtNQ=="
+  "resolved" "https://registry.npmjs.org/diff-sequences/-/diff-sequences-27.5.1.tgz"
+  "version" "27.5.1"
 
 "doctrine@^2.1.0":
   "integrity" "sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw=="
@@ -3916,6 +3929,16 @@
     "jest-get-type" "^26.3.0"
     "pretty-format" "^26.6.2"
 
+"jest-diff@^27.5.1":
+  "integrity" "sha512-m0NvkX55LDt9T4mctTEgnZk3fmEg3NRYutvMPWM/0iPnkFj2wIeF45O1718cMSOFO1vINkqmxqD8vE37uTEbqw=="
+  "resolved" "https://registry.npmjs.org/jest-diff/-/jest-diff-27.5.1.tgz"
+  "version" "27.5.1"
+  dependencies:
+    "chalk" "^4.0.0"
+    "diff-sequences" "^27.5.1"
+    "jest-get-type" "^27.5.1"
+    "pretty-format" "^27.5.1"
+
 "jest-docblock@^26.0.0":
   "integrity" "sha512-RDZ4Iz3QbtRWycd8bUEPxQsTlYazfYn/h5R65Fc6gOfwozFhoImx+affzky/FFBuqISPTqjXomoIGJVKBWoo0w=="
   "resolved" "https://registry.npmjs.org/jest-docblock/-/jest-docblock-26.0.0.tgz"
@@ -3963,6 +3986,11 @@
   "integrity" "sha512-TpfaviN1R2pQWkIihlfEanwOXK0zcxrKEE4MlU6Tn7keoXdN6/3gK/xl0yEh8DOunn5pOVGKf8hB4R9gVh04ig=="
   "resolved" "https://registry.npmjs.org/jest-get-type/-/jest-get-type-26.3.0.tgz"
   "version" "26.3.0"
+
+"jest-get-type@^27.5.1":
+  "integrity" "sha512-2KY95ksYSaK7DMBWQn6dQz3kqAf3BB64y2udeG+hv4KfSOb9qwcYQstTJc1KCbsix+wLZWZYN8t7nwX3GOBLRw=="
+  "resolved" "https://registry.npmjs.org/jest-get-type/-/jest-get-type-27.5.1.tgz"
+  "version" "27.5.1"
 
 "jest-haste-map@^26.6.2":
   "integrity" "sha512-easWIJXIw71B2RdR8kgqpjQrbMRWQBgiBwXYEhtGUTaX+doCjBheluShdDMeR8IMfJiTqH4+zfhtg29apJf/8w=="
@@ -4046,6 +4074,16 @@
     "jest-diff" "^26.6.2"
     "jest-get-type" "^26.3.0"
     "pretty-format" "^26.6.2"
+
+"jest-matcher-utils@^27.0.0":
+  "integrity" "sha512-z2uTx/T6LBaCoNWNFWwChLBKYxTMcGBRjAt+2SbP929/Fflb9aa5LGma654Rz8z9HLxsrUaYzxE9T/EFIL/PAw=="
+  "resolved" "https://registry.npmjs.org/jest-matcher-utils/-/jest-matcher-utils-27.5.1.tgz"
+  "version" "27.5.1"
+  dependencies:
+    "chalk" "^4.0.0"
+    "jest-diff" "^27.5.1"
+    "jest-get-type" "^27.5.1"
+    "pretty-format" "^27.5.1"
 
 "jest-message-util@^26.6.2":
   "integrity" "sha512-rGiLePzQ3AzwUshu2+Rn+UMFk0pHN58sOG+IaJbk5Jxuqo3NYO1U2/MIR4S1sKgsoYSXSzdtSa0TgrmtUwEbmA=="
@@ -5514,7 +5552,7 @@
     "ansi-styles" "^4.0.0"
     "react-is" "^17.0.1"
 
-"pretty-format@^27.0.0":
+"pretty-format@^27.0.0", "pretty-format@^27.5.1":
   "integrity" "sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ=="
   "resolved" "https://registry.npmjs.org/pretty-format/-/pretty-format-27.5.1.tgz"
   "version" "27.5.1"
