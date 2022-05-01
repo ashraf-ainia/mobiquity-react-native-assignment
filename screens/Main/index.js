@@ -3,14 +3,18 @@ import { SafeAreaView } from 'react-native';
 
 import TermsSlider from '../../components/TermsSlider';
 import ImagesList from '../../components/ImagesList';
+import SearchHistory from '../../components/SearchHistory';
 import getTermsList from '../../services/getTermsList';
 import searchFlickrImages from '../../services/searchFlickrImages';
+import { getTimeFromDate } from '../../config/helpers';
 
 const termsList = getTermsList();
 
 const MainScreen = () => {
     const [selectedTermId, setSelectedTermId] = React.useState();
     const [images, setImages] = React.useState({ photo: [] });
+    const [termsHistory, setTermsHistory] = React.useState([]);
+    const [isHistoryModalVisible, setIsHistoryModalVisible] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
 
     const fetchImagesData = (isNewTerm, text, page) => {
@@ -39,8 +43,16 @@ const MainScreen = () => {
     };
 
     const setSelectedTermHandler = (termId) => {
-        setSelectedTermId(termId);
+        // prevent double requests for the same term
+        if (termId === selectedTermId) return;
+
         const termText = termsList.find(term => term.id === termId).title;
+        const termHistoryObject = {
+            text: termText,
+            date: getTimeFromDate()
+        };
+        setTermsHistory(prevState => [...prevState, termHistoryObject]);
+        setSelectedTermId(termId);
         fetchImagesData(true, termText, 1);
     };
 
@@ -65,6 +77,12 @@ const MainScreen = () => {
             <TermsSlider
                 terms={memoizedTermsList}
                 setSelectedTerm={setSelectedTermHandler}
+            />
+            <SearchHistory
+                historyList={termsHistory}
+                onOpenModal={() => setIsHistoryModalVisible(true)}
+                onCloseModal={() => setIsHistoryModalVisible(false)}
+                isModalVisible={isHistoryModalVisible}
             />
             <ImagesList
                 images={images}
