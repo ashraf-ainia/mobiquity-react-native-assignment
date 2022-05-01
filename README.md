@@ -14,6 +14,7 @@ Clone the repository, then run below commands:
 ### For run on simulator/device:
 
 - npm install
+- npx pod-install
 - npm run ios
 - npm run android
 
