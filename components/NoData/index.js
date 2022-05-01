@@ -3,11 +3,11 @@ import { View, Text } from 'react-native';
 
 import styles from './styles'
 
-const NoData = () => {
+const NoData = ({title, description}) => {
     return (
         <View testID='noData' style={styles.root}>
-            <Text>No data</Text>
-            <Text>Select a term to load images</Text>
+            <Text>{title}</Text>
+            <Text>{description}</Text>
         </View>
     );
 };

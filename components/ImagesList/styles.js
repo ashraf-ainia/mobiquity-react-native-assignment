@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     root: {
-        height: '85%',
+        flex: 100
     },
     image: {
         width: '100%',
