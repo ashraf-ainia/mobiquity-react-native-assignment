@@ -24,7 +24,7 @@ const ImagesList = ({ images, isLoading, fetchMoreImages }) => {
                 }}
                 ListFooterComponent={() => isLoading ? <ActivityIndicator size={25} color={colors.primary} /> : null}
                 onEndReached={fetchMoreImages}
-                ListEmptyComponent={() => <NoData />}
+                ListEmptyComponent={() => <NoData title="No data" description="Select a term to load images" />}
                 numColumns={2}
             />
         </View>
