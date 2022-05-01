@@ -7,4 +7,5 @@ export default {
     gray4: '#AAA',
     gray5: '#999',
     gray6: '#888',
+    gray7: '#444',
 };
