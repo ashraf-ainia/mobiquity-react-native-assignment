@@ -7,4 +7,14 @@ describe('Main Screen suite', () => {
         const rendered = render(<NoData />);
         expect(rendered.getByTestId('noData')).toBeDefined();
     });
+
+    it('Renders title correctly', () => {
+        const rendered = render(<NoData title="testing title" />);
+        expect(rendered.getByText("testing title")).toBeDefined();
+    });
+
+    it('Renders description correctly', () => {
+        const rendered = render(<NoData description="testing description" />);
+        expect(rendered.getByText("testing description")).toBeDefined();
+    });
 });
