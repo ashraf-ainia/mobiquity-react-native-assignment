@@ -32,11 +32,12 @@ ___
 ### Main screen:
 
 Main screen has the following two functionalities:
-1. Renders a list of specified terms cards in a horizontal scroll view.
-2. Each term card can be clicked to fetch a list of images based on the term topic.
-3. Renders a paginated list of images "20 images per API call" fetched from **Flickr** API after clicking any term card.
-4. Another set of images will be fetched whenever screen reached the bottom of the images list.
-5. Images list will be reset every time the user clicked a new term card.
+1. Renders a search text input.
+2. Renders a list of common terms cards in a horizontal scroll view.
+3. To fetch a list of images: each term card can be clicked based on the term topic or by typing in the search input.
+4. Renders a paginated list of images "20 images per API call" fetched from **Flickr** API after clicking any term card or by typing in the search input.
+5. Another set of images will be fetched whenever screen reached the bottom of the images list.
+6. Images list will be reset every time the user clicked a new term card or typed a new text in the search input.
 
 ___
 
@@ -49,6 +50,8 @@ ___
 
 ### Production:
 - [axios]: A promise based HTTP client, used for configure a Flickr API instance as Singleton design pattern and use it through the app.
+
+- [use-debounce]: A React hook for value and callback debouncing
 
 ### Development:
 - [@testing-library/react-native]: A lightweight solution for testing React Native components.
@@ -69,5 +72,6 @@ I decided to use Container/Component pattern rather than using the state patern 
 - axios: contains HTTP clients instances.
 
 [axios]: https://github.com/axios/axios
+[use-debounce]: https://www.npmjs.com/package/use-debounce
 [@testing-library/react-native]: https://testing-library.com/docs/react-native-testing-library/intro
 [Setup development environment]: https://reactnative.dev/docs/environment-setup
