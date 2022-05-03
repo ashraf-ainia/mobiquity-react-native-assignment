@@ -9,14 +9,20 @@ ___
 
 ## Run the app
 [Setup development environment] based on your pc type.<br>
-Clone the repository, then run below commands:
+Clone the repository, navigate inside the repository folder, then run below commands:
+
+`Notes before starting:`<br>
+Project path must not contain any spaces.<br>
+To run on android you will need Java 11 set in your terminal path.
 
 ### For run on simulator/device:
 
 - npm install
-- npx pod-install
-- npm run ios
-- npm run android
+- For IOS:
+- - npx pod-install
+- - npm run ios
+- For Android:
+- - npm run android
 
 ### For running tests:
 - npm run test
