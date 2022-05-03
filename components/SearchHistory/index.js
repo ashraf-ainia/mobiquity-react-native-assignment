@@ -25,14 +25,14 @@ const SearchHistory = ({
                     </View>
                     <FlatList
                         data={historyList}
-                        renderItem={(row, index) => {
+                        renderItem={(row) => {
                             return (
                                 <View
                                     testID={`searchHistoryItem_${row.index}`}
                                     style={styles.itemContainer}
                                 >
-                                    <Text>{row.item.date}</Text>
                                     <Text>{row.item.text}</Text>
+                                    <Text>{row.item.date}</Text>
                                 </View>
                             )
                         }}

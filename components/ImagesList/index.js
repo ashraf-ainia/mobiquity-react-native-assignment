@@ -6,10 +6,17 @@ import NoData from "../NoData";
 import ImageWithLoading from '../ui/ImageWithLoading';
 import colors from "../../constants/colors";
 
-const ImagesList = ({ images, isLoading, fetchMoreImages }) => {
+const ImagesList = ({ images, isLoading, fetchMoreImages, listScrollToggle }) => {
+    const flatListRef = React.useRef();
+
+    React.useEffect(() => {
+        flatListRef.current?.scrollToOffset({ animated: false, offset: 0 })
+    }, [listScrollToggle]);
+
     return (
         <View testID="imagesList" style={styles.root}>
             <FlatList
+                ref={flatListRef}
                 data={images.photo}
                 renderItem={(photo) => {
                     const imageUrl = `https://farm${photo.item.farm}.static.flickr.com/${photo.item.server}/${photo.item.id}_${photo.item.secret}.jpg`;
@@ -26,6 +33,7 @@ const ImagesList = ({ images, isLoading, fetchMoreImages }) => {
                 onEndReached={fetchMoreImages}
                 ListEmptyComponent={() => <NoData title="No data" description="Select a term to load images" />}
                 numColumns={2}
+                keyExtractor={(item, index) => index.toString() + item.id}
             />
         </View>
     );
