@@ -1,6 +1,8 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
+import { useDebouncedCallback } from 'use-debounce';
 
+import TermsSearchInput from '../../components/TermsSearchInput';
 import TermsSlider from '../../components/TermsSlider';
 import ImagesList from '../../components/ImagesList';
 import SearchHistory from '../../components/SearchHistory';
@@ -11,11 +13,13 @@ import { getTimeFromDate } from '../../config/helpers';
 const termsList = getTermsList();
 
 const MainScreen = () => {
+    const [searchText, setSearchText] = React.useState('');
     const [selectedTermId, setSelectedTermId] = React.useState();
     const [images, setImages] = React.useState({ photo: [] });
     const [termsHistory, setTermsHistory] = React.useState([]);
     const [isHistoryModalVisible, setIsHistoryModalVisible] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
+    const [listScrollToggle, setListScrollToggle] = React.useState(false);
 
     const fetchImagesData = (isNewTerm, text, page) => {
         setIsLoading(true);
@@ -24,6 +28,13 @@ const MainScreen = () => {
             // isNewTerm true means to reset the images list
             if (isNewTerm) {
                 setImages(res);
+
+                const termHistoryObject = {
+                    text,
+                    date: getTimeFromDate()
+                };
+                setTermsHistory(prevState => [...prevState, termHistoryObject]);
+                setListScrollToggle(prevState => !prevState);
             } else {
                 // keep old data and concatenate the new fetched images with them
                 const newImagesState = {
@@ -34,6 +45,7 @@ const MainScreen = () => {
                     ]
                 };
                 setImages(newImagesState);
+                // setListScrollToggle(false);
             }
         }).catch(err => {
             __DEV__ && console.log('err: ', err);
@@ -42,24 +54,21 @@ const MainScreen = () => {
         });
     };
 
+    const debouncedFetchImagesData = useDebouncedCallback(fetchImagesData, 400);
+
     const setSelectedTermHandler = (termId) => {
         // prevent double requests for the same term
         if (termId === selectedTermId) return;
 
         const termText = termsList.find(term => term.id === termId).title;
-        const termHistoryObject = {
-            text: termText,
-            date: getTimeFromDate()
-        };
-        setTermsHistory(prevState => [...prevState, termHistoryObject]);
         setSelectedTermId(termId);
+        setSearchText(termText);
         fetchImagesData(true, termText, 1);
     };
 
     const fetchMoreHandler = () => {
         if (images.photo.length < images.total) {
-            const termText = termsList.find(term => term.id === selectedTermId).title;
-            fetchImagesData(false, termText, images.page + 1);
+            fetchImagesData(false, searchText, images.page + 1);
         }
     };
 
@@ -72,8 +81,22 @@ const MainScreen = () => {
         });
     }, [selectedTermId]);
 
+    const setSearchTextHandler = (value) => {
+        setSearchText(value);
+        setSelectedTermId(null);
+        if (value) {
+            debouncedFetchImagesData(true, value, 1);
+        } else {
+            setImages({ photo: [] });
+        }
+    };
+
     return (
         <SafeAreaView testID='mainScreen' style={{ flex: 1 }}>
+            <TermsSearchInput
+                searchText={searchText}
+                setSearchText={setSearchTextHandler}
+            />
             <TermsSlider
                 terms={memoizedTermsList}
                 setSelectedTerm={setSelectedTermHandler}
@@ -88,6 +111,7 @@ const MainScreen = () => {
                 images={images}
                 isLoading={isLoading}
                 fetchMoreImages={fetchMoreHandler}
+                listScrollToggle={listScrollToggle}
             />
         </SafeAreaView>
     );
